@@ -1,0 +1,38 @@
+<!-- !bcdn5 emmet abbr to start off -->
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset = "UTF-8">
+        <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+        <meta http-equiv = "X-UA-Compatible" content = "ie=edge">
+        <meta name = "Description" content = "Enter your description here"/>
+        <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+        <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename='css/main.css') }}" />
+        <!-- Jinja block's for inter-changable titles across pages -->
+        <title class = 'text-center'>{% block title %}{% endblock title %}</title>
+    </head>
+    <body style = "background-color: #f0ffff;">
+
+        <!-- Jinja block for Navbar -->
+        {% include 'nav.html' %}
+
+        <!-- Start Container -->
+        <div class = "container">
+            <!-- Jinja block for flash alerts for user feedback -->
+            {% include 'alert.html' %}
+
+            <!-- Jinja block's for inter-changable content across pages -->
+            {% block content %}
+            {% endblock content %}
+            <pre>
+
+<hr class="rounded">                
+<p class="text-center">This is a project for acadamia, please don't sue me! I love programming!</p>
+</pre>
+        </div>
+
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+    </body>
+</html>

@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock title %}
+
+{% block content %}
+
+
+<!-- Introducing author and brandname to users -->
+<h1 class = 'text-center'>
+    <pre>
+
+        
+Hello World!</pre></h1>
+
+<h3 class = 'text-center'>
+    <pre>
+My name is {{ author_info['authorname'] }}
+
+</pre></h3>
+<hr class = "rounded">
+<h2 class = 'text-center'>
+    <pre>
+
+Welcome to <span class = "brand">Phown Book™</span></pre></h2>
+
+<h4 class = 'text-center'>
+    <pre>
+Your own online phone book! We hope you enjoy your stay!
+
+</pre></h4>
+<hr class = "rounded">
+
+<!-- If user is logged in -->
+{% if current_user.is_authenticated %}
+<!-- Display username to logged in user -->
+<h3 class = "text-center">
+    <pre>
+
+You are currently signed in as: <span class = "highlight">{{ current_user.username }}</span>
+
+Here are your contacts!     \(^ヮ^)/
+
+</pre></h3>
+    {% for contact in contacts %}
+        <!-- Display only the logged in user's contacts -->
+        {% if current_user.id == contact.user_id %}
+            <pre><hr class = "rounded_sml"></pre>
+            <div class = "row">
+                <div class="col-sm-4">
+                    <div class = "card">
+                        <div class = "card-body">
+                            <!-- Link for user to view_contacts -->
+                            <a href = "{{ url_for('view_contact', contact_id = contact.id) }}">
+                                <!-- Contact first and last name displayed in card -->
+                                <h5 class = "card-title text-center"> _{{ contact.firstname }} {{ contact.lastname }}_ </h5>
+                            </a>
+                            <!-- Contact phone number displayed in card -->
+                            <h6 class = "card-title text-center"> {{ contact.phone }} </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <pre><hr class = "rounded_sml_bottom">
+                
+</pre>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+
+<h3 class = "text-center">
+    <pre>
+
+Here are some of the many reasons why users love <span class = "brand">Phown Book™</span></pre></h3>
+
+
+<ul class = 'text-center'>
+    <!-- Explaining to user reasons to use my phone book -->
+    {% for reason in reasons %}
+        <!-- I mean, who wouldn't want to use them after seeing these reasons? -->
+        <h6 class = 'text-center'>
+            <pre>
+
+{{ reason }}
+</pre></h6>
+    <!-- They are honestly fairly convincing reasons if I do say so myself -->
+    {% endfor %}
+</ul>
+
+{% if current_user.is_authenticated %}
+{% else %}
+    <!-- Prompting user to sign up or log in to view contacts -->
+    <h3 class = "text-center">
+        <pre><hr class="rounded_sml"></pre>
+            <pre>
+Please <a href = "{{ url_for('signup') }}">Sign Up</a> or <a href = "{{ url_for('login') }}">Log In</a> to View Contacts!
+</pre></h3>
+    <pre><hr class="rounded_sml_bottom"></pre>
+        <pre><hr class = "rounded"></pre>
+{% endif %}
+
+
+
+{% endblock content %}

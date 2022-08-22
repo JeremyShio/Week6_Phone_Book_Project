@@ -1,0 +1,29 @@
+<!-- Navigation Bar for User Interface -->
+<nav class = "navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+    <div class = "container-fluid">
+        <a class = "navbar-brand" href = "{{ url_for('index') }}">Phown Book™</a>
+        <button class = "navbar-toggler" type = "button" data-bs-toggle = "collapse" data-bs-target = "#navbarNavAltMarkup" aria-controls = "navbarNavAltMarkup" aria-expanded = "false" aria-label = "Toggle navigation">
+            <span class = "navbar-toggler-icon"></span>
+        </button>
+        <div class = "collapse navbar-collapse" id = "navbarNavAltMarkup">
+            <div class = "navbar-nav">
+                <a class = "nav-link active" aria-current = "page" href = "{{ url_for('index') }}">Home</a>
+                <!-- If User is logged in -->
+                {% if current_user.is_authenticated %}
+                    <!-- User can add a new contact -->
+                    <a class = "nav-link" href = "{{ url_for('add_contact') }}">Add Contact</a>
+                    <!-- View all of user's contacts -->
+                    <a class = "nav-link" href = "{{ url_for('view_all_contacts', user_id = current_user.id) }}">View All Contacts</a>
+                    <!-- User can log out -->
+                    <a class = "nav-link" href = "{{ url_for('logout') }}">Log Out</a>
+                    <!-- If user is not logged in -->
+                {% else %}
+                    <!-- User needs to sign up for features -->
+                    <a class = "nav-link" href = "{{ url_for('signup') }}">Sign Up</a>
+                    <!-- User needs to log in for features -->
+                    <a class = "nav-link" href = "{{ url_for('login') }}">Log In</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>

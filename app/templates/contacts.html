@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %} Contact Information: {% endblock title %}
+
+{% block content %}
+
+
+    <!-- Displaying each and every one of the user's contacts to user -->
+    {% for contact in contacts %}
+        <!-- Displaying contact values to user -->
+        <h3 class = "text-center"><pre>
+
+
+First Name: {{ contact.firstname }}</h3></pre>
+        <h3 class = "text-center"><pre>
+Last Name: {{ contact.lastname }}</h3></pre>
+        <h3 class = "text-center"><pre>
+Phone Number: {{ contact.phone }}</h3></pre>
+        <h6 class = "text-center"><pre>
+Address: {{ contact.address }}</h6></pre>
+        <h6 class = "text-center"><pre>
+Email: {{ contact.email }}</h6></pre>
+        <h6 class = "text-center"><pre>
+Relationship: {{ contact.relationship }}</h6></pre>
+        <h6 class = "text-center"><pre>
+Other: {{ contact.other }}</h6></pre>
+        <p class = "text-center">{{ contact.date_created.strftime('%A, %B %d, %Y') }}</p>
+
+        <!-- Container to center buttons -->
+        <div class="col d-flex justify-content-center">
+            <!-- Edit contact button for user -->
+            <a class = 'btn btn-primary w-50' href="{{ url_for('edit_contact', contact_id = contact.id) }}">Edit Contact</a>
+
+            <!-- Button trigger modal - Delete contact button for user -->
+            <button type="button" class="btn btn-danger w-50" data-bs-toggle="modal" data-bs-target="#modal_label">Delete Contact</button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="modal_label" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal_label" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="modal_label">Delete Contact</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <!-- Prompt user, make sure they know that deleting is permanent -->
+                    <div class="modal-body">
+                    Are you sure you want to delete {{ contact.firstname }} {{ contact.lastname }}? This action cannot be undone.
+                    </div>
+                    <div class="modal-footer">
+                    <!-- User can close out of modal if they do not wish to proceed -->
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                    <!-- User can delete to confirm permanent contact removal -->
+                    <a href="{{ url_for('delete_contact', contact_id = contact.id) }}" class="btn btn-danger">Delete<span class="glyphicon glyphicon-remove"></span></a>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <pre>
+
+<hr class = "rounded"></pre>
+    {% endfor %}
+{% endblock content %}

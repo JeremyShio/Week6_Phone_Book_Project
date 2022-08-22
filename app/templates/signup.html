@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %} Create a new account! {% endblock title %}
+
+{% block content %}
+
+
+<!-- Trying to persuade users to sign up and explaining the process to users -->
+<h1 class = "text-center"><pre>
+
+
+Sign Up Here!
+
+</pre></h1>
+
+<hr class="rounded">
+
+<h3 class = "text-center"><pre>
+
+In order to use <span class="brand">Phown Book's™</span> features you must first create an account.</pre></h3>
+<h6 class = "text-center"><pre>
+
+
+Please fill out all fields below, then click <span class="confirm">"Submit"</span> to proceed!
+
+
+</pre></h6>
+<hr class="rounded">
+
+<form method = "post">
+    <!-- Authentication token -->
+    {{ form.csrf_token }}
+
+    <div class="form-group">
+        <pre>
+
+{{ form.email.label }}
+{{ form.email(class = 'form-control', placeholder = 'Example: Email@gmail.com') }}
+</pre>
+
+        <pre>
+{{ form.username.label }}
+{{ form.username(class = 'form-control', placeholder = 'Example: Username71') }}
+</pre>
+        
+        <pre>
+{{ form.password.label }}
+{{ form.password(class = 'form-control', placeholder = 'Example: Abc123') }}
+</pre>
+        
+        <pre>
+{{ form.confirm_pass.label }}
+{{ form.confirm_pass(class = 'form-control', placeholder = 'Example: Abc123') }}
+</pre>
+        
+        <div class="button_container">{{ form.submit(class = 'btn btn-success w-75 mt-3') }}</div>
+    </div>
+</form>
+
+
+{% endblock content %}

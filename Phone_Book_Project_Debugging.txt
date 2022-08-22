@@ -1,0 +1,12 @@
+<--! Phone_Book_Project_Debugging !-->
+
+<--! Problems_Discovered !-->
+     1. When creating a contact as ' Test ' user, contact does not recieve a ' user_id '
+          -- Value of ' user_id ' is ' NULL '
+          -- Integer is not being given to contact but why?
+          -- ' User(model) ' is set to have a relationship with ' Contact '
+          -- ' Contact(model) ' foreign key is set to ' user.id '
+
+     2. ' User feedback for -- No Contacts ' shows 2x
+          -- Probably due to the bug above
+          -- Is it because I have a 2x check for User's contacts in my code?

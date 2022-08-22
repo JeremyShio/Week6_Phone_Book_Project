@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %} Create a new contact! {% endblock title %}
+
+{% block content %}
+
+
+<!-- Explaining adding a new contact process to user -->
+<h1 class = "text-center"><pre>
+
+
+Add A New Contact Here!
+</pre></h1>
+<h6 class = "text-center"><pre>
+Please fill out all fields below, then click <span class="confirm">"Submit"</span> to proceed!
+</pre></h6>
+
+
+<form method = "post">
+    <!-- Authentication token -->
+    {{ form.csrf_token }}
+
+    <div class = "form-group">
+        <pre>
+{{ form.firstname.label }}
+{{ form.firstname(class = 'form-control', placeholder = 'Example: Keanu') }}</pre>
+
+        <pre>
+{{ form.lastname.label }}
+{{ form.lastname(class = 'form-control', placeholder = 'Example: Reeves') }}</pre>
+
+        <pre>
+{{ form.phone.label }}
+{{ form.phone(class = 'form-control', placeholder = 'Example: (555)-555-5555') }}</pre>
+
+        <pre>
+{{ form.address.label }}
+{{ form.address(class = 'form-control', placeholder = 'Example: 123 Real Street Hollywood, CA 90069') }}</pre>
+
+        <pre>
+{{ form.email.label }}
+{{ form.email(class = 'form-control', placeholder = 'Example: TheRealJohnWick@gmail.com') }}</pre>
+
+        <pre>
+{{ form.relationship.label }}
+{{ form.relationship(class = 'form-control', placeholder = 'Example: Family Friend') }}</pre>
+
+        <pre>
+{{ form.other.label }}
+{{ form.other(class = 'form-control', placeholder = "Example: Won't forget to tell you that you're breathtaking... Wonderful!") }}</pre>
+
+        <div class="button_container">{{ form.submit(class = 'btn btn-success w-75 mt-3') }}</div>
+    </div>
+</form>
+
+
+{% endblock content %}
